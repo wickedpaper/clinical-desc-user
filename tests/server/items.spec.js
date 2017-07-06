@@ -17,7 +17,7 @@
     };
 */
     var mockdb = {
-        policiesDb: {
+        descDb: {
             insert: function(body, callback){
                 callback(null);
             },
@@ -46,9 +46,9 @@
     //cdb.__set__('policiesDb', mockdb);
     var desc = rewire('../../tests/server/coverage/instrumented/routes/desc.js');
     //policies.__set__('cloudant', mockcloudant);
-    policies.__set__('db', mockdb);
+    desc.__set__('db', mockdb);
 
-    var USE_FASTCACHE = policies.getFastCache();
+    var USE_FASTCACHE = desc.getFastCache();
 
     // create mock request and response
     var reqMock = {
