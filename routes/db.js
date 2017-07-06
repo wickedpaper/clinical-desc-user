@@ -7,22 +7,22 @@ try {
       retryTimeout: 500
     });
     exports.cloudant = cloudant;
-    var policiesDb = cloudant.use('policies');
-    exports.policiesDb = policiesDb;
+    var descDb = cloudant.use('desc');
+    exports.descDb = descDb;
 }
 catch (e) {
     console.error("Error initializing services for /db: ", e);
 }
 
-//populate the db with these policies.
+//populate the db with these desc keys.
 var populateDB = function() {
 
-    var policies = require('./starter_docs/policies.json');
+    var desc = require('./starter_docs/registrardesc.json');
 
-    for (var p in policies){
-        policiesDb.insert(policies[p], function(err/*, body, header*/) {
+    for (var p in desc){
+        descDb.insert(desc[p], function(err/*, body, header*/) {
             if (err){
-                //console.log('error in populating the DB policies: ' + err );
+                //console.log('error in populating the DB desc: ' + err );
             }
         });
     }
@@ -36,12 +36,12 @@ var initDB = function() {
     if (typeof cloudant == 'undefined')
         return res.send({msg:'Error: Cannot run initDB() w/o Cloudant service'});
 
-    cloudant.db.create('policies', function(err/*, body*/) {
+    cloudant.db.create('desc', function(err/*, body*/) {
 	    if (!err) {
 	        populateDB();
 	        //console.log('Successfully created database and populated!');
 	    } else {
-	        //console.log("Database already exists.");
+	        //console.log("Concierge User already exists.");
 	    }
     });
 };
