@@ -1,7 +1,7 @@
 ---
 applications:
-- name: dev-insurance-catalog
-  host: dev-insurance-catalog
+- name: dev-clinical-desc-api
+  host: dev-clinical-desc-api
   memory: 128M
   services:
-  - dev-insurance-policy-db
+  - DESC-db

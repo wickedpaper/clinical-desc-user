@@ -1,6 +1,6 @@
 var _ = require('lodash');
 var desireds = require('./desireds');
-
+// think about new catalog api url 
 var gruntConfig = {
         env: {
             test: {

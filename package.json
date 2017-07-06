@@ -1,7 +1,7 @@
 {
-  "name": "insurance-catalog",
+  "name": "DESC APP",
   "version": "1.0.0",
-  "description": "A Node.js app for interacting with insurance policies in a Cloudant DB.",
+  "description": "A Node.js app for interacting with EHR in a Cloudant DB.",
   "private": false,
   "keywords": [
     "bluemix",
@@ -15,7 +15,6 @@
   },
   "dependencies": {
     "body-parser": "1.12.x",
-    "cf-deployment-tracker-client": "*",
     "cfenv": "1.0.x",
     "cloudant": "1.6.x",
     "consolidate": "0.11.x",
@@ -49,19 +48,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/IBM-Bluemix/insurance-catalog.git"
+    "url": "https://github.com/wickedpaper/repo-1001-clinical-use-desc.git"
   },
   "bugs": {
-    "url": "https://github.com/IBM-Bluemix/insurance-catalog/issues"
+    "url": "https://github.com/wickedpaper/repo-1001-clinical-use-desc/issues"
   },
   "engines": {
     "node": "4.4.x"
   },
-  "author": "IBM Corp.",
+  "author": "CCD Ltd.",
   "contributors": [
     {
-      "name": "Jake Peyser",
-      "email": "jepeyser@us.ibm.com"
+      "name": "SUPPORT",
+      "email": "n/a"
     }
   ],
   "license": "Apache-2.0"

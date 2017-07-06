@@ -7,7 +7,7 @@ try {
     db.initDB();
 }
 catch (e) {
-  console.error("Error initializing services for /policies: ", e);
+  console.error("Error initializing services for /desc: ", e);
 }
 
 /*
@@ -59,20 +59,20 @@ exports.dbOptions = function(req, res) {
 
     var option = req.params.option.toLowerCase();
     if (option === 'create') {
-        db.cloudant.db.create('policies', function(err/*, body*/) {
+        db.cloudant.db.create('desc', function(err/*, body*/) {
             if (!err) {
                 db.populateDB();
-                res.send({msg:'Successfully created database and populated!'});
+                res.send({msg:'Successfully created desc db with data!'});
             } else {
                 res.send({msg:err});
             }
         });
     } else if (option === 'delete') {
-        db.cloudant.db.destroy('policies', function(err/*, body*/) {
+        db.cloudant.db.destroy('desc', function(err/*, body*/) {
 	        if (!err) {
-	            res.send({msg:'Successfully deleted db policies!'});
+	            res.send({msg:'Successfully deleted db desc user!'});
 	        } else {
-	        	res.send({msg:'Error deleting db policies: ' + err});
+	        	res.send({msg:'Error deleting db desc: ' + err});
         	}
         });
     } else {
@@ -84,14 +84,14 @@ exports.dbOptions = function(req, res) {
 exports.create = function(req, res) {
 
     // Bound service check
-    if (typeof db.policiesDb == 'undefined')
-        return res.send({msg:'Error: Cannot run create() w/o policies DB'});
+    if (typeof db.descDb == 'undefined')
+        return res.send({msg:'Error: Cannot run create() w/o DESC DB'});
 
-    db.policiesDb.insert(req.body, function(err/*, body, headers*/) {
+    db.descDb.insert(req.body, function(err/*, body, headers*/) {
         if (!err) {
-            res.send({msg: 'Successfully created policy'});
+            res.send({msg: 'Successfully created desc user'});
         } else {
-            res.send({msg: 'Error on insert, maybe the policy already exists: ' + err});
+            res.send({msg: 'Error on insert, maybe the desc user already exists: ' + err});
         }
     });
 };
@@ -100,8 +100,8 @@ exports.create = function(req, res) {
 exports.find = function(req, res) {
 
     // Bound service check
-    if (typeof db.policiesDb == 'undefined')
-        return res.send({msg:'Error: Cannot run find() w/o policies DB'});
+    if (typeof db.descDb == 'undefined')
+        return res.send({msg:'Error: Cannot run find() w/o desc key DB'});
 
     var id = req.params.id;
     if (USE_FASTCACHE) {
@@ -113,11 +113,11 @@ exports.find = function(req, res) {
     	}
         return;
     }
-    db.policiesDb.get(id, { revs_info: false }, function(err, body) {
+    db.descDb.get(id, { revs_info: false }, function(err, body) {
         if (!err) {
             res.send(body);
         } else {
-            res.send({msg:'Error: could not find policy: ' + id});
+            res.send({msg:'Error: could not find desc key: ' + id});
         }
     });
 };
@@ -126,15 +126,15 @@ exports.find = function(req, res) {
 exports.list = function(req, res) {
 
     // Bound service check
-    if (typeof db.policiesDb == 'undefined')
-        return res.send({msg:'Error: Cannot run list() w/o policies DB'});
+    if (typeof db.descDb == 'undefined')
+        return res.send({msg:'Error: Cannot run list() w/o desc DB'});
 
-    db.policiesDb.list({include_docs: true}, function(err, body/*, headers*/) {
+    db.descDb.list({include_docs: true}, function(err, body/*, headers*/) {
 	    if (!err) {
 	        res.send(body);
 	        return;
 	    }
-	   	res.send({msg:'Error listing policies: ' + err});
+	   	res.send({msg:'Error listing desc details: ' + err});
     });
 };
 
@@ -142,15 +142,15 @@ exports.list = function(req, res) {
 exports.update = function(req, res) {
 
     // Bound service check
-    if (typeof db.policiesDb == 'undefined')
-        return res.send({msg:'Error: Cannot run update() w/o policies DB'});
+    if (typeof db.descDb == 'undefined')
+        return res.send({msg:'Error: Cannot run update() w/o DESC DB'});
 
     var id = req.params.id;
     var data = req.body;
-    db.policiesDb.get(id, {revs_info:true}, function(err, body) {
+    db.descDb.get(id, {revs_info:true}, function(err, body) {
         if (!err) {
             data._rev = body._rev;
-            db.policiesDb.insert(data, id, function(err/*, body, headers*/) {
+            db.descDb.insert(data, id, function(err/*, body, headers*/) {
 	            if (!err) {
 	                res.send({msg:'Successfully updated policy: ' + JSON.stringify(data)});
 	            } else {
@@ -159,7 +159,7 @@ exports.update = function(req, res) {
             });
         }
         else {
-        	res.send({msg:'Error getting policy for update: ' + err});
+        	res.send({msg:'Error getting desc user for update: ' + err});
     	}
     });
 };
@@ -168,22 +168,22 @@ exports.update = function(req, res) {
 exports.remove =  function(req, res) {
 
     // Bound service check
-    if (typeof db.policiesDb == 'undefined')
-        return res.send({msg:'Error: Cannot run remove() w/o policies DB'});
+    if (typeof db.descDb == 'undefined')
+        return res.send({msg:'Error: Cannot run remove() w/o connection to DESC'});
 
     var id = req.params.id;
-    db.policiesDb.get(id, { revs_info: true }, function(err, body) {
+    db.descDb.get(id, { revs_info: true }, function(err, body) {
         if (!err) {
             //console.log('Deleting policy: ' + id);
-            db.policiesDb.destroy(id, body._rev, function(err/*, body*/) {
+            db.descDb.destroy(id, body._rev, function(err/*, body*/) {
                 if (!err) {
-                    res.send({msg:'Successfully deleted policy'});
+                    res.send({msg:'Successfully deleted concierge user'});
                 } else {
                     res.send({msg:'Error in delete: ' + err});
                 }
             });
         } else {
-            res.send({msg:'Error getting policy id: ' + err});
+            res.send({msg:'Error getting desc key id: ' + err});
         }
     });
 };
