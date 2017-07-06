@@ -1,7 +1,7 @@
 ---
 applications:
-- name: clinical-desc-api-db
-  host: clinical-desc-api-db
+- name: clinical-desc-api
+  host: clinical-desc-api
   memory: 128M
   services:
-  - DESC_DB
+  - DESC-db
