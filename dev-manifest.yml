@@ -1,7 +1,7 @@
 ---
 applications:
-- name: clinical-use-desc
-  host: clinical-use-desc
+- name: dev-clinical-desc-api
+  host: dev-clinical-desc-api
   memory: 128M
   services:
   - DESC-db
