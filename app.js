@@ -36,10 +36,10 @@ app.get('/db/:option', desc.dbOptions);
 app.get('/policies', desc.list);
 app.get('/fib', desc.fib);
 app.get('/loadTest', desc.loadTest);
-app.get('/policies/:id', desc.find);
-app.post('/policies', desc.create);
-app.put('/policies/:id', desc.update);
-app.delete('/policies/:id', desc.remove);
+app.get('/desc/:id', desc.find);
+app.post('/desc', desc.create);
+app.put('/desc/:id', desc.update);
+app.delete('/desc/:id', desc.remove);
 
 // start server on the specified port and binding host
 app.listen(appEnv.port, "0.0.0.0", function () {
