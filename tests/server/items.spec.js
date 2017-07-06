@@ -44,7 +44,7 @@
     //var cdb = rewire('../../tests/server/coverage/instrumented/routes/db.js');
     //cdb.__set__('cloudant', mockcloudant);
     //cdb.__set__('policiesDb', mockdb);
-    var policies = rewire('../../tests/server/coverage/instrumented/routes/policies.js');
+    var desc = rewire('../../tests/server/coverage/instrumented/routes/desc.js');
     //policies.__set__('cloudant', mockcloudant);
     policies.__set__('db', mockdb);
 
