@@ -2,7 +2,7 @@
   "services": {
     "cloudantNoSQLDB": [
       {
-        "name": "DESC_DB",
+        "name": "DESC-db",
         "label": "cloudantNoSQLDB",
         "plan": "Lite",
         "credentials": {
