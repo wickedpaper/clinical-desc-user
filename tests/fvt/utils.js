@@ -5,7 +5,7 @@ var request = REQUEST.defaults({
 });
 
 exports.makeRestCall = function(method, url, headers, callback) {
-    var server = process.env.CATALOG_API_TEST_SERVER;
+    var server = process.env.DESC_API_TEST_SERVER;
     request({
         method: method.method,
         body: method.body,
@@ -22,8 +22,8 @@ exports.makeRestCall = function(method, url, headers, callback) {
     });
 };
 
-exports.getPolicies = function(policyName, callback) {
-    exports.makeRestCall({method: 'GET'}, '/policies', null, function(err, resp, body) {
+exports.getdesc = function(policyName, callback) {
+    exports.makeRestCall({method: 'GET'}, '/desc', null, function(err, resp, body) {
         if(resp.statusCode === 200) {
             var returndocs = [];
             for(var i = 0; i < body.total_rows; i++) {
@@ -33,7 +33,7 @@ exports.getPolicies = function(policyName, callback) {
             }
             return callback(null, returndocs);
         } else {
-            return callback("Failed to get Policies", null);
+            return callback("Failed to get DESC", null);
         }
     });
 }
