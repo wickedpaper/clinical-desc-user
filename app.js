@@ -4,26 +4,6 @@ var cfenv = require("cfenv");
 var path = require('path');
 var cors = require('cors');
 
-//---Deployment Tracker---------------------------------------------------------
-require("cf-deployment-tracker-client").track();
-
-// Setup the required environment variables
-var vcapLocal = null;
-try {
-  vcapLocal = require("./vcap-local.json");
-}
-catch (e) {}
-
-var appEnvOpts = vcapLocal ? {vcap:vcapLocal} : {};
-var appEnv = cfenv.getAppEnv(appEnvOpts);
-
-try {
-	cloudantService = appEnv.services.cloudantNoSQLDB[0];
-}
-catch (e) {
-	console.error("Error looking up service: ", e);
-}
-
 // Setup route handlers
 var policies = require('./routes/policies');
 
