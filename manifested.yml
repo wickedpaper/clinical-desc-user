@@ -1,0 +1,7 @@
+---
+applications:
+- name: insurance-catalog
+  host: insurance-catalog
+  memory: 128M
+  services:
+  - insurance-policy-db
