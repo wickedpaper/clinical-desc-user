@@ -27,10 +27,10 @@ wd.configureHttp( {
 });
 
 var desired = JSON.parse(process.env.DESIRED || '{browserName: "chrome"}');
-desired.name = 'CatalogAPI with ' + desired.browserName;
-desired.tags = ['CatalogAPI'];
+desired.name = 'DESCgAPI with ' + desired.browserName;
+desired.tags = ['DESCAPI'];
 
-describe('CatalogAPI(' + desired.browserName + ')', function() {
+describe('DESCAPI(' + desired.browserName + ')', function() {
     var browser;
     var allPassed = true;
 
