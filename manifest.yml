@@ -2,6 +2,6 @@
 applications:
 - name: clinical-desc-api
   host: clinical-desc-api
-  memory: 128M
+  memory: 256M
   services:
   - DESC-db
